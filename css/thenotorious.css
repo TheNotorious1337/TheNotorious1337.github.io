@@ -1,6 +1,16 @@
+body.thenotorious {
+    display: none;
+}
 
+.support {
+    display: block;
+}
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 780px) and (min-height: 870px) {
+    .support {
+        display: none;
+    }
+
     body.thenotorious {
         overflow: auto;
         overflow-x: hidden;

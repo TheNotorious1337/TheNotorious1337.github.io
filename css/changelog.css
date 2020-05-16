@@ -1,6 +1,6 @@
 
 
-@media only screen and (min-width: 700px){
+@media only screen and (min-width: 780px){
     .changelog-body {
         display: flex;
         flex-direction: column;

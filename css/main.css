@@ -15,7 +15,7 @@ body {
     display: none;
 }
 
-@media only screen and (min-width:700px){
+@media only screen and (min-width:780px){
     body {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         color: white;
@@ -24,6 +24,7 @@ body {
         width: 100vw;
         height: 100vh;
         overflow: hidden;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -217,7 +218,7 @@ body {
         border-radius: 15px;
         transition: .5s ease;
         color: white;
-        width: 16%;
+        width: 20%;
         height: 28px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 80%;
@@ -277,5 +278,9 @@ body {
         font-size: 110%;
         display: inline;
         margin-left: 3px;
+    }
+
+    h1.title {
+        text-transform: uppercase;
     }
 }
