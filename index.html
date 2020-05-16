@@ -9,9 +9,14 @@
 </head>
 <body>
     <div class="head">
-        <h1 class="title">welcome to myMaths Helping tool</h1>
+        <h1 class="title">welcome to myMaths Cheating tool</h1>
         <h2 class="sub-title">Heaven for those who are lazy or can't be bothered to do their homework</h2>
         <h3>For Educational Purpose Only</h3>
+        <div class="version">
+            <input type="button" value="Changelog" id="changelog">
+            <input type="button" value="Who is He?" id="thenotorious">
+            <span style=" margin-right: 0px; height: auto; color: red; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Version 3.0</span>
+        </div>
     </div>
     <div class="body">
         <form action="#Hacking_In_Progress">
@@ -19,17 +24,26 @@
             <input type="text" name="taskID" id="TID" placeholder="TaskID" required autocomplete="off">
             <input type="text" name="Q1" id="Q1" placeholder="Question 1 Score" required autocomplete="off">
             <input type="text" name="Q2" id="Q2" placeholder="Question 2 Score" required autocomplete="off">
+            <input type="text" name="Q3" id="Q3" placeholder="Question 3 Score" required autocomplete="off" hidden>
+            <input type="text" name="Q4" id="Q4" placeholder="Question 4 Score" required autocomplete="off" hidden>
             <input type="text" name="sCode" id="sCode" placeholder="sCode" readonly autocomplete="off">
             <label for="url" hidden>Generated Url:</label>
             <textarea name="url-holder" id="url" cols="30" rows="10" readonly hidden></textarea>
             <div class="buttons">
                 <input style="font-size: 14px;"type="button" id="generate-btn" value="Generate sCode" hidden>
-                <input type="button" id="hack-btn" value="Hack">
+                <div class="checkbox">
+                    <input type="checkbox" name="worksheet" id="worksheet" autocomplete="off"/>
+                    <span class="checkboxtext">
+                        Worksheet
+                    </span>
+                </div>
+                <input type="button" id="hack-btn" value="Update">
             </div>
         </form>
     </div>
     <div class="footer" id="footer">
         <h3>Created by <span style="color: limegreen; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">The Notorious One</span></h3>
+        
     </div>
 </body>
 <script src="js/main.js"></script>

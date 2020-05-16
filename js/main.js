@@ -6,8 +6,13 @@ const aCode_input =  document.getElementById("aCode");
 const TID_input = document.getElementById("TID");
 const q1_input = document.getElementById("Q1");
 const q2_input = document.getElementById("Q2");
+const q3_input = document.getElementById("Q3");
+const q4_input = document.getElementById("Q4");
+const worksheet_check = document.getElementById("worksheet");
 const sCode_box = document.getElementById("sCode");
 const footer = document.getElementById("footer");
+const chnglog_btn = document.getElementById("changelog");
+const author_btn = document.getElementById("thenotorious");
 var isWorksheet = false; // Used to determine whether more than 2 questions are expected
 var counter = 0;
 
@@ -25,13 +30,26 @@ gen_btn.addEventListener("click", function(e) {
     startHack(true);
 });
 
+chnglog_btn.addEventListener("click", function(e) {
+    location.href = "Changelog/index.html";
+});
+
+author_btn.addEventListener("click", function(e) {
+    location.href = "TheNotoriousOne/index.html";
+});
+
+worksheet_check.addEventListener('change', function(e){
+    isWorksheet = !isWorksheet;
+    toggleWorksheetMode();
+});
+
 footer.addEventListener("click", function(e) {
     if(counter == 1)
         alert("You thought this was some lame Yedi trick?");
     else if(counter == 2)
         alert("This is your final warning!");
     else if(counter > 2)
-        sendToWeb("https://www.google.com/");
+        location.href = "TheNotoriousOne/index.html";
     else    
         alert("I wouldn't do that if I were you!");
 
@@ -54,6 +72,14 @@ q2_input.addEventListener("keyup", function(e) {
     validate(this);
 });
 
+q3_input.addEventListener("keyup", function(e) {
+    validate(this);
+});
+
+q4_input.addEventListener("keyup", function(e) {
+    validate(this);
+});
+
 
 // Functions \\
 function isValidNumber(number) {
@@ -68,8 +94,25 @@ function generateSecurityCode(authCode, taskID, q1score, q2score) {
     return sCode;
 }
 
-function generateURL(sCode, taskID, Q1, Q2) {
-    return `http://www.mymaths.co.uk/studentRecords/saveDataOH.asp?sCode=${sCode}&q1score=${Q1}&q2score=${Q2}&taskID=${taskID}`;
+function toggleWorksheetMode() {
+    q3_input.toggleAttribute("hidden");
+    q4_input.toggleAttribute("hidden");
+}
+
+/**
+ * 
+ * @param {Number} sCode 
+ * @param {Number} taskID 
+ * @param {Number} Q1 
+ * @param {Number} Q2 
+ * @param {Number} Q3 
+ * @param {Number} Q4 
+ */
+function generateURL(sCode, taskID, Q1, Q2, Q3 = null, Q4 = null) {
+    if(!isWorksheet && Q3 == null && Q4 == null)
+        return `http://www.mymaths.co.uk/studentRecords/saveDataOH.asp?sCode=${sCode}&q1score=${Q1}&q2score=${Q2}&taskID=${taskID}`;
+    else
+        return `http://www.mymaths.co.uk/studentRecords/saveDataOH.asp?sCode=${sCode}&q1score=${Q1}&q2score=${Q2}&q3score=${Q3}&q4score=${Q4}&taskID=${taskID}`;
 } 
 
 function openInNewTab(url) {
@@ -82,26 +125,34 @@ function startHack(generate) {
     var authcode = document.getElementById("aCode").value;
     var q1 = document.getElementById("Q1").value;
     var q2 = document.getElementById("Q2").value;
+    if(isWorksheet) {
+        var q3 = document.getElementById("Q3").value;
+        var q4 = document.getElementById("Q4").value;
+    }
     var sCode;
 
     sCode_box.value = '';
     url.textContent = '';
 
-    var valid = validateForm(authcode, taskID, q1, q2);
+    if(worksheet)
+        var valid = validateForm(authcode, taskID, q1, q2, isWorksheet, q3, q4);
+    else
+        var valid = validateForm(authcode, taskID, q1, q2);
 
     if(isValidNumber(authcode) && isValidNumber(taskID) && isValidNumber(q1) && isValidNumber(q2))
         sCode = generateSecurityCode(authcode, taskID, q1, q2);
-    else {
-        //throw new Error("Invalid Input Was Detected!");
-    }
         
 
     if(sCode && sCode != null && valid) {
         sCode_box.value = sCode;
-        var urli = generateURL(sCode, taskID, q1, q2);
+        if(!isWorksheet)
+            var urli = generateURL(sCode, taskID, q1, q2);
+        else
+            var urli = generateURL(sCode, taskID, q1, q2, q3, q4);
         url.textContent = urli; 
         if(!generate)
-            sendToWeb(urli);
+            alert(urli);
+            //sendToWeb(urli);
     }
 }
 
@@ -151,7 +202,7 @@ function sendToWeb(url) {
     openInNewTab(url);
 }
 
-function validateForm(authcode, taskID, q1, q2) {
+function validateForm(authcode, taskID, q1, q2, isWorksheet, q3 = null, q4 = null) {
     var valid = true;
 
     if(authcode.trim().length < 4 || !isValidNumber(authcode)) {
@@ -186,6 +237,27 @@ function validateForm(authcode, taskID, q1, q2) {
     else
         q2_input.classList.remove("invalid");
 
+    if(isWorksheet) {
+        if(q3 != null && q4 != null) {
+            if(q3.trim().length < 1 || !isValidNumber(q3)) {
+                q3_input.classList.remove("valid");
+                q3_input.classList.add("invalid");
+                valid = false;
+            }
+            else
+                q3_input.classList.remove("invalid");
+
+            if(q4.trim().length < 1 || !isValidNumber(q4)) {
+                q4_input.classList.remove("valid");
+                q4_input.classList.add("invalid");
+                valid = false;
+            }
+            else
+                q4_input.classList.remove("invalid");
+        }
+        else
+            throw new Error("No Score for Question 3 and Question 4 provided!");
+    }   
     return valid;
 }
 

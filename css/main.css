@@ -19,7 +19,7 @@ body {
     body {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         color: white;
-        padding: 4px;
+        padding: 0;
         margin: 0;
         width: 100vw;
         height: 100vh;
@@ -47,6 +47,10 @@ body {
         width: 100%;
         padding: 4px;
         text-align: center;
+    }
+
+    .checkbox {
+        user-select: none;
     }
 
     form {
@@ -187,10 +191,58 @@ body {
 
     .footer {
         max-height: 5%;
+        padding: 5px;
         height: 5%;
         width: 100%;
         background-color: rgba(11, 22, 65, 0.9);
         transition: .55s ease;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+
+    div.version {
+        height: auto;
+        width: auto;
+        display: flex;
+        padding: 10px;
+    }
+
+    div.version > input {
+        border: none;
+        background-color: rgba(25, 20, 118, 0.99);
+        border-radius: 15px;
+        transition: .5s ease;
+        color: white;
+        width: 16%;
+        height: 28px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 80%;
+        font-weight: bold;
+    }
+
+    div.version > input:hover {
+        cursor: pointer;
+        background-color: rgba(40, 40, 188, 0.99);
+        transform: scale(1.15);
+        transition: .5s ease;
+    }
+
+    div.version > input:active {
+        cursor: pointer;
+        transform: scale(.95);
+        transition: .5s ease;
+    }
+
+    div.version > input:first-child {
+        margin-right: 15px;
+    }
+
+    div.version > span {
+        margin: auto;
     }
 
     .footer:hover {
@@ -202,16 +254,27 @@ body {
         transition: .55s ease;
     }
 
-    .footer > h3 {
-        margin: 0;
-        transform: translateY(50%);
-    }
-
     .head {
         background-color: rgba(11,27,78,0.6);
         color: white;
         width: 60%;
         padding: 10px;
         transition: .55s ease;
+        user-select: none;
+    }
+
+    input[type=checkbox] {
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        padding: 10px;
+    }
+
+    .checkboxtext {
+        font-size: 110%;
+        display: inline;
+        margin-left: 3px;
     }
 }
