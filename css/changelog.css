@@ -1,4 +1,6 @@
-
+.changelog-box {
+    display: none;
+}
 
 @media only screen and (min-width: 780px){
     .changelog-body {
@@ -13,6 +15,7 @@
     }
 
     .changelog-box {
+        display: block;
         max-width: 70%;
         max-height: 80vh;
         overflow: hidden;
