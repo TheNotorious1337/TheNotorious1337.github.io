@@ -285,6 +285,10 @@ body {
         margin-right: 15px;
     }
 
+    div.version > input#thenotorious {
+        margin-right: 15px;
+    }
+
     div.version > span {
         margin: auto;
     }
