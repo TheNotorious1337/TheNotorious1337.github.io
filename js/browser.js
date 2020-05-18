@@ -6,6 +6,6 @@ if(navigator.userAgent.indexOf('Firefox') == -1 && navigator.userAgent.indexOf('
     <h1>For Now Please Use Either Microsoft Edge or Mozilla Firefox </h1>`
 }
 
-if(window.innerWidth < 780 || window.innerHeight < 780) {
-    body.innerHTML = `<h1> Unsupported Browser Dimensions! </h1>`
-}
+// if(window.innerWidth < 780 || window.innerHeight < 780) {
+//     body.innerHTML = `<h1> Unsupported Browser Dimensions! </h1>`
+// }
